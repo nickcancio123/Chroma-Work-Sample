@@ -8,23 +8,10 @@
 
 ABackpack::ABackpack()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	BackpackMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BackpackMesh"));
 }
-
-void ABackpack::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-void ABackpack::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 
 
 void ABackpack::Init(ACharacter* _OwningCharacter, UPUAbilitySystemComponent* _ASC)

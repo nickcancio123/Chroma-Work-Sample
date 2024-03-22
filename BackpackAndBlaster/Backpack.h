@@ -30,13 +30,7 @@ class PROJECTUNREST_API ABackpack : public AActor
 	
 public:	
 	ABackpack();
-	virtual void Tick(float DeltaTime) override;
 
-protected:
-	virtual void BeginPlay() override;
-
-
-public:
 	/** Event fired when the current battery changes, whether it is a new one or just recharged/discharged */
 	FCurrentBatteryChangedDelegate CurrentBatteryChangedEvent;
 

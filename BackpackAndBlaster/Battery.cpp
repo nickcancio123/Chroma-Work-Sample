@@ -7,7 +7,7 @@
 
 ABattery::ABattery()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	if (!BatteryMesh)
 	{
@@ -15,19 +15,6 @@ ABattery::ABattery()
 		SetRootComponent(BatteryMesh);
 	}
 }
-
-void ABattery::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-void ABattery::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 
 
 void ABattery::Recharge_Exec()

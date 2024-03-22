@@ -23,7 +23,6 @@ class PROJECTUNREST_API APUBlaster : public AActor
 	
 public:	
 	APUBlaster();
-	virtual void Tick(float DeltaTime) override;
 
 	/** Caches references and initializes the state of the blaster. Required for blaster to function */
 	UFUNCTION(BlueprintCallable, Category = "Blaster")
@@ -41,8 +40,6 @@ protected:
 	/** The ability system component of the actor that owns this blaster */
 	UPROPERTY(BlueprintReadOnly, Category = "Blaster")
 	UPUAbilitySystemComponent* OwnerASC = nullptr;
-
-	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Blaster")
 	const ABackpack* GetBackpack() const;

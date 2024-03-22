@@ -21,9 +21,7 @@ class PROJECTUNREST_API ABattery : public AActor
 	GENERATED_BODY()
 	
 public:	
-	ABattery();
-	virtual void Tick(float DeltaTime) override;
-	
+	ABattery();	
 
 	/** 
 	*	The calling function for recharging battery. 
@@ -89,8 +87,6 @@ protected:
 	/** The static mesh of the battery */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery")
 	UStaticMeshComponent* BatteryMesh = nullptr;
-
-	virtual void BeginPlay() override;
 
 
 private:

@@ -10,20 +10,10 @@
 
 APUBlaster::APUBlaster()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	BlasterMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BlasterMesh"));
 	SetRootComponent(BlasterMesh);
-}
-
-void APUBlaster::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-void APUBlaster::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 
