@@ -48,9 +48,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Rechamber_Exec();
 
-	/*
-	 *	The calling function for the reload functionality.
-	*/
+	/*	The calling function for the reload functionality. */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Reload_Exec();
 
