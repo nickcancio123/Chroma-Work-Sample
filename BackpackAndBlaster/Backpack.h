@@ -31,63 +31,63 @@ class PROJECTUNREST_API ABackpack : public AActor
 public:	
 	ABackpack();
 
-	/** Event fired when the current battery changes, whether it is a new one or just recharged/discharged */
+	/* Event fired when the current battery changes, whether it is a new one or just recharged/discharged */
 	FCurrentBatteryChangedDelegate CurrentBatteryChangedEvent;
 
-	/** Caches references, binds events, and initializes batteries. */
+	/* Caches references, binds events, and initializes batteries. */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Init(
 		ACharacter* _OwningCharacter, 
 		UPUAbilitySystemComponent* _ASC
 	);
 
-	/** 
+	/* 
 	*	The calling function for rechamber functionality. Decides whether to reload or increment current battery index.
 	*	Defers the visual changes to Rechamber_BP.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Rechamber_Exec();
 
-	/**
+	/*
 	 *	The calling function for the reload functionality.
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Reload_Exec();
 
 
-	/** Creates a new battery actor of given type and replaces owned battery at given index */
+	/* Creates a new battery actor of given type and replaces owned battery at given index */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void InsertNewBattery(TSubclassOf<ABattery> NewBatteryClass, int32 ChamberIndex);
 
-	/** Swaps owned batteries between given indices */
+	/* Swaps owned batteries between given indices */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void SwapOwnedBatteries(int32 FirstBatteryIndex, int32 SecondBatteryIndex);
 
-	/** Calls discharge on the current battery  */
+	/* Calls discharge on the current battery  */
 	void DischargeCurrentBattery();
 
 
 	#pragma region === Accessors ===
 
-	/** Returns the next battery to be shot */
+	/* Returns the next battery to be shot */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	const ABattery* GetCurrentBattery() const;
 
-	/** Returns the owned battery at the given index */
+	/* Returns the owned battery at the given index */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	const ABattery* GetBatteryAtIndex(int32 Index) const;
 
 
-	/** Returns the index of the next battery to be shot */
+	/* Returns the index of the next battery to be shot */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	int32 GetCurrentBatteryIndex() const;
 
-	/** Returns the next battery, after current battery */
+	/* Returns the next battery, after current battery */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	int32 GetNextBatteryIndex() const;
 
 
-	/** Returns the count of the current battery type */
+	/* Returns the count of the current battery type */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	const int32 GetCurrentBatteryCount() const;
 
@@ -95,75 +95,75 @@ public:
 
 
 protected:
-	/** The blaster's static mesh */
+	/* The blaster's static mesh */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Backpack")
 	UStaticMeshComponent* BackpackMesh = nullptr;
 
-	/** The battery instances in the cylinder */
+	/* The battery instances in the cylinder */
 	UPROPERTY(BlueprintReadOnly, Category = "Backpack")
 	TArray<ABattery*> OwnedBatteries;
 
-	/** Sets battery location to socket and attaches to it */
+	/* Sets battery location to socket and attaches to it */
 	UFUNCTION(BlueprintImplementableEvent, Category = "Backpack")
 	void AttachBatteryToSocket(ABattery* Battery, int32 SocketIndex);
 
-	/** Only Rechamber_Exec should call this function. Responsible for driving visual changes of rechambering. */
+	/* Only Rechamber_Exec should call this function. Responsible for driving visual changes of rechambering. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "Backpack")
 	void Rechamber_BP();
 
-	/** Only Rechamber_Exec should call this function. Increments current battery index. */
+	/* Only Rechamber_Exec should call this function. Increments current battery index. */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Rechamber_CPP();
 
-	/** Only Reload_Exec should call this function. Responsible for driving visual changes of rechambering. */
+	/* Only Reload_Exec should call this function. Responsible for driving visual changes of rechambering. */
 	UFUNCTION(BlueprintImplementableEvent, Category = "Backpack")
 	void Reload_BP();
 
-	/** Only Reload_BP should call this function. Resets current battery index to zero and recharges all batteries. */
+	/* Only Reload_BP should call this function. Resets current battery index to zero and recharges all batteries. */
 	UFUNCTION(BlueprintCallable, Category = "Backpack")
 	void Reload_CPP();
 
 
 private:
-	/** Total number of batteries per cylinder (reload) */
+	/* Total number of batteries per cylinder (reload) */
 	UPROPERTY(EditDefaultsOnly, Category = "Backpack", meta = (AllowPrivateAccess = "true"))
 	int32 OwnedBatteriesCount = 6;
 
-	/** The types of batteries the backpack starts with */
+	/* The types of batteries the backpack starts with */
 	UPROPERTY(EditDefaultsOnly, Category = "Backpack", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<ABattery>> InitialOwnedBatteryTypes;
 
-	/** The gameplay ability that drives the backpack reload */
+	/* The gameplay ability that drives the backpack reload */
 	UPROPERTY(EditDefaultsOnly, Category = "Backpack", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UPUGameplayAbility> ReloadAbility;
 
 
-	/** The character that owns (i.e., inits) this backpack */
+	/* The character that owns (i.e., inits) this backpack */
 	ACharacter* OwnerCharacter = nullptr;
 
-	/** The ability system component on the owning character */
+	/* The ability system component on the owning character */
 	UPUAbilitySystemComponent* OwnerASC = nullptr;
 
-	/** The index of the next battery to be shot */
+	/* The index of the next battery to be shot */
 	int32 CurrentBatteryIndex = 0;
 
-	/** The number of each type of battery in the cylinder */
+	/* The number of each type of battery in the cylinder */
 	TMap<FGameplayTag, int32> BatteryTypeCounts;
 
-	/** The material slot index for the emissive material of BackpackMesh*/
+	/* The material slot index for the emissive material of BackpackMesh*/
 	int32 EmissiveMaterialSlot = 0;
 
 
-	/** Creates initial battery instances from specified initial classes */
+	/* Creates initial battery instances from specified initial classes */
 	void CreateInitialBatteries();
 
-	/** Counts the number of each type of battery in the cylinder, storing the counts in a TMap */
+	/* Counts the number of each type of battery in the cylinder, storing the counts in a TMap */
 	void CountBatteryTypes();
 
-	/** Gives and activates the reload ability to the OwnerASC */
+	/* Gives and activates the reload ability to the OwnerASC */
 	void ActivateReloadAbility();
 
-	/** Sets the backpack's emissive material to that of the current battery */
+	/* Sets the backpack's emissive material to that of the current battery */
 	UFUNCTION()
 	void UpdateEmissiveMaterial();
 };

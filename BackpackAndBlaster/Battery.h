@@ -76,7 +76,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Battery")
 	const FLinearColor& GetVisualsColor() const;
 
-	/** Returns the active material depending on if has charge */
+	/* Returns the active material depending on if has charge */
 	UMaterialInstance* GetActiveMaterial() const;
 
 
@@ -84,43 +84,43 @@ public:
 
 
 protected:
-	/** The static mesh of the battery */
+	/* The static mesh of the battery */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery")
 	UStaticMeshComponent* BatteryMesh = nullptr;
 
 
 private:
-	/** An identifier for this battery type */
+	/* An identifier for this battery type */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	FGameplayTag BatteryTypeTag = FGameplayTag::EmptyTag;
 
-	/** The ability unique to this battery type that is activated when it is discharged from the blaster */
+	/* The ability unique to this battery type that is activated when it is discharged from the blaster */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UPUGameplayAbility> DischargeAbility = nullptr;
 
-	/** The material for when the battery has charge */
+	/* The material for when the battery has charge */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	UMaterialInstance* ChargedMaterial = nullptr;
 	
-	/** The material for when the battery has no charge */
+	/* The material for when the battery has no charge */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	UMaterialInstance* DischargedMaterial = nullptr;
 
-	/** The Niagara VFX that travels along the hitscan when the battery is discharged */
+	/* The Niagara VFX that travels along the hitscan when the battery is discharged */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	UNiagaraSystem* DischargeBeamVFX;
 
-	/** The muzzle flash Niagara VFX that is mounted to the blaster muzzle socket */
+	/* The muzzle flash Niagara VFX that is mounted to the blaster muzzle socket */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	UNiagaraSystem* DischargeMuzzleVFX;
 
-	/** The color used for simple parameterized visuals */
+	/* The color used for simple parameterized visuals */
 	UPROPERTY(EditDefaultsOnly, Category = "Battery", meta = (AllowPrivateAccess = "true"))
 	FLinearColor VisualsColor;
 
-	/** Whether the battery has charge and can be discharged */
+	/* Whether the battery has charge and can be discharged */
 	bool bHasCharge = true;
 
-	/** The material slot index for the emissive material that changes when the charge state changes */
+	/* The material slot index for the emissive material that changes when the charge state changes */
 	int32 EmissiveMaterialSlotIndex = 1;
 };
