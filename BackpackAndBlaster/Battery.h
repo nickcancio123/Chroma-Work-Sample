@@ -23,7 +23,7 @@ class PROJECTUNREST_API ABattery : public AActor
 public:	
 	ABattery();	
 
-	/** 
+	/*
 	*	The calling function for recharging battery. 
 	*	Turns on the battery emissive material and sets has charge to true.
 	*	Then calls Recharge_BP
@@ -31,7 +31,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Battery")
 	void Recharge_Exec();
 
-	/**
+	/*
 	 *	Only Recharge_Exec should call this function.
 	 *	Uses timeline to animate recharge.
 	*/
@@ -39,7 +39,7 @@ public:
 	void Recharge_BP();
 
 
-	/**
+	/*
 	*	The calling function for discharging battery.
 	*	Turns off the battery emissive material and sets has charge to false.
 	*	Then calls Discharge_BP
@@ -47,7 +47,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Battery")
 	void Discharge_Exec();
 
-	/**
+	/*
 	 *	Only Discharge_Exec should call this function.
 	 *	Uses timeline to animate discharge.
 	*/
